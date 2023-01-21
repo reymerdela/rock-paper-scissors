@@ -1,4 +1,5 @@
-
+let puntuacion = 0;
+let puntuacionpc = 0;
 
 function getComputerChoice () {
     let piedras = "piedra";
@@ -35,20 +36,34 @@ function playRound () {
     }
     else if (a == "piedra" && b == "papel"|| a == "papel" && b == "tijeras"|| a == "tijeras" && b == "piedra") {
         result = "Perdiste! " + b + " gana a "+ a;
-        
-    }
+        puntuacionpc = puntuacionpc + 1;
+    }   
     else if (a == "piedra" && b == "tijeras"|| a == "papel" && b == "piedra"|| a == "tijeras" && b == "papel") {
         result = "Ganaste " + a +" gana a " + b;
+        puntuacion = puntuacion + 1;
     }
-    return result;
+    return alert(result);
 }
 
 function game () {
-
-    for(let i = 0; i < 5; i++) {
-       alert(playRound());      
+    let sigue = true;
+    while (sigue) {
+       playRound();
+       console.table(puntuacion, puntuacionpc);
+       if (puntuacion >= 5) {
+        alert("GANASTE");
+        sigue = false;
+        }
+        if (puntuacionpc >= 5){
+        alert("PERDISTE");
+        sigue = false;
+        }
     }
+    
+    
+    puntuacion = 0;
+    puntuacionpc = 0;
 }
 
-game();
 
+game();
